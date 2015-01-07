@@ -44,22 +44,6 @@
 		}
 		echo "</table>";
 
-		echo "<p>";
-
-		$stmt_runner = $conn->prepare("select first_name, last_name, runner_email, birthdate from runner");
-		$stmt_runner->execute();
-		$runners = $stmt_runner->fetchAll();
-
-		echo "<table style='border: 1px solid black'><tr><th>Name</th><th>Email</th><th>Age</th></tr>";
-		foreach($runners as $runner)
-		{
-			$today = strtotime(date('Y-m-d'));
-			$birthdate = strtotime($runner['birthdate']);
-			$runner_age = ($today - $birthdate)/(60*60*24*365);
-			echo "<tr><td>" . $runner['first_name'] . " " . $runner['last_name'] . "</td><td>" . $runner['runner_email'] . "</td><td>" . floor($runner_age) . " years</td></tr>";
-		}
-		echo "</table>";
-
 	}
 	catch(PDOException $e)
 	{
