@@ -44,6 +44,19 @@
 		}
 		echo "</table>";
 
+		echo "<p>";
+
+		$stmt_race = $conn->prepare("select * from races, runner where races.runner_id = runner.runner_id");
+		$stmt_race->execute();
+		$races = $stmt_race->fetchAll();
+
+		echo "<table style='border: 1px solid black'><tr><th>Name</th><th>Date</th><th>Location</th><th>Runner Name</th></tr>";
+		foreach($races as $race)
+		{
+			echo "<tr><td>" . $race['race_name'] . "</td><td>" . $race['race_date'] . "</td><td>" . $race['race_city'] . ", " . $race['race_state'] . "</td><td>" . $race['first_name'] . " " . $race['last_name'] . "</td></tr>";
+		}
+		echo "</table>";
+
 	}
 	catch(PDOException $e)
 	{
