@@ -1,3 +1,9 @@
+<html>
+<head>
+	<title>Test Conn</title>
+	<link rel="stylesheet" type="text/css" href="testconn.css" />
+</head>
+
 <?php
 	$servername = "localhost";
 	$username = "racer";
@@ -7,6 +13,7 @@
 	{
 		$conn = new PDO("mysql:host=$servername;dbname=races", $username, $password);
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		echo "<body style='font-family:Verdana'>";
 		echo "Connected successfully<p>";
 		$races_table = $conn->prepare("DESCRIBE races");
 		$races_table->execute();
@@ -34,7 +41,7 @@
 		$stmt_runner->execute();
 		$runners = $stmt_runner->fetchAll();
 
-		echo "<table style='border: 1px solid black'><tr><th>Name</th><th>Email</th><th>Age</th></tr>";
+		echo "<table><tr><th>Name</th><th>Email</th><th>Age</th></tr>";
 		foreach($runners as $runner)
 		{
 			$today = strtotime(date('Y-m-d'));
@@ -50,12 +57,13 @@
 		$stmt_race->execute();
 		$races = $stmt_race->fetchAll();
 
-		echo "<table style='border: 1px solid black'><tr><th>Name</th><th>Date</th><th>Location</th><th>Runner Name</th></tr>";
+		echo "<table><tr><th>Name</th><th>Date</th><th>Location</th><th>Runner Name</th></tr>";
 		foreach($races as $race)
 		{
 			echo "<tr><td>" . $race['race_name'] . "</td><td>" . $race['race_date'] . "</td><td>" . $race['race_city'] . ", " . $race['race_state'] . "</td><td>" . $race['first_name'] . " " . $race['last_name'] . "</td></tr>";
 		}
 		echo "</table>";
+		echo "</body>";
 
 	}
 	catch(PDOException $e)
