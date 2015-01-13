@@ -15,6 +15,9 @@
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		echo "<body style='font-family:Verdana'>";
 		echo "Connected successfully<p>";
+		
+		//DESCRIBE THE TABLES IN THE RACES DATABASE
+		/*
 		$races_table = $conn->prepare("DESCRIBE races");
 		$races_table->execute();
 		$race_fields = $races_table->fetchAll(PDO::FETCH_COLUMN);
@@ -25,7 +28,7 @@
 		}
 
 		echo "<p>";
-
+        
 		$runner_table = $conn->prepare("DESCRIBE runner");
 		$runner_table->execute();
 		$runner_fields = $runner_table->fetchAll(PDO::FETCH_COLUMN);
@@ -36,6 +39,7 @@
 		}
 
 		echo "<p>";
+        */
 
 		$stmt_runner = $conn->prepare("select first_name, last_name, runner_email, birthdate from runner");
 		$stmt_runner->execute();
