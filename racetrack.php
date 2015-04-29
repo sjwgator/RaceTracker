@@ -69,6 +69,7 @@
 		echo "</table>";
 		echo "</body>";
 
+		$conn = null;
 	}
 	catch(PDOException $e)
 	{
